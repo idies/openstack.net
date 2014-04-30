@@ -72,6 +72,7 @@
     <Compile Include="Core\Domain\Converters\SimpleStringJsonConverter`1.cs" />
     <Compile Include="Core\Domain\Converters\IPAddressSimpleConverter.cs" />
     <Compile Include="Core\Domain\DiskConfiguration.cs" />
+    <Compile Include="Core\Domain\ExtendedCloudIdentity.cs" />
     <Compile Include="Core\Domain\ExtendedEndpoint.cs" />
     <Compile Include="Core\Domain\ImageState.cs" />
     <Compile Include="Core\Domain\IPAddressList.cs" />
