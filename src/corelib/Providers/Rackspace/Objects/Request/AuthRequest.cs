@@ -40,6 +40,10 @@
             if (raxIdentity != null)
                 credentials.Domain = raxIdentity.Domain;
 
+            var extIdentity = identity as ExtendedCloudIdentity;
+            if (extIdentity != null)
+                credentials.TenantName = extIdentity.TenantName;
+
             Credentials = credentials;
         }
     }

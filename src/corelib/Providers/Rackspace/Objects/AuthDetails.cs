@@ -5,6 +5,9 @@ namespace net.openstack.Providers.Rackspace.Objects
     [JsonObject(MemberSerialization.OptIn)]
     internal class AuthDetails
     {
+        [JsonProperty("tenantName", DefaultValueHandling = DefaultValueHandling.Include)]
+        public string TenantName { get; set; }
+
         [JsonProperty("passwordCredentials", DefaultValueHandling = DefaultValueHandling.Include)]
         public Credentials PasswordCredentials { get; set; }
 
