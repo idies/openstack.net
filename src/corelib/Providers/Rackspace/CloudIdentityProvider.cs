@@ -174,7 +174,7 @@ namespace net.openstack.Providers.Rackspace
                     {"limit", !limit.HasValue ? null : limit.Value.ToString()},
                 });
 
-            var response = ExecuteRESTRequest<RolesResponse>(identity, new Uri(UrlBase, "/v2.0/OS-KSADM/roles"), HttpMethod.GET, queryStringParameter: parameters);
+            var response = ExecuteRESTRequest<RolesResponse>(identity, new Uri(UrlBase, "v2.0/OS-KSADM/roles"), HttpMethod.GET, queryStringParameter: parameters);
 
             if (response == null || response.Data == null)
                 return null;
@@ -191,7 +191,7 @@ namespace net.openstack.Providers.Rackspace
                 throw new ArgumentException("name cannot be empty");
             CheckIdentity(identity);
 
-            var response = ExecuteRESTRequest<RoleResponse>(identity, new Uri(UrlBase, "/v2.0/OS-KSADM/roles"), HttpMethod.POST, new AddRoleRequest(new Role(name, description)));
+            var response = ExecuteRESTRequest<RoleResponse>(identity, new Uri(UrlBase, "v2.0/OS-KSADM/roles"), HttpMethod.POST, new AddRoleRequest(new Role(name, description)));
 
             if (response == null || response.Data == null)
                 return null;
@@ -527,7 +527,7 @@ namespace net.openstack.Providers.Rackspace
         {
             CheckIdentity(identity);
 
-            var response = ExecuteRESTRequest<UsersResponse>(identity, new Uri(UrlBase, "/v2.0/users"), HttpMethod.GET);
+            var response = ExecuteRESTRequest<UsersResponse>(identity, new Uri(UrlBase, "v2.0/users"), HttpMethod.GET);
 
             if (response == null || response.Data == null)
                 return null;
@@ -610,7 +610,7 @@ namespace net.openstack.Providers.Rackspace
                 throw new InvalidOperationException("newUser.Id must be null");
             CheckIdentity(identity);
 
-            var response = ExecuteRESTRequest<NewUserResponse>(identity, new Uri(UrlBase, "/v2.0/users"), HttpMethod.POST, new AddUserRequest(newUser));
+            var response = ExecuteRESTRequest<NewUserResponse>(identity, new Uri(UrlBase, "v2.0/users"), HttpMethod.POST, new AddUserRequest(newUser));
 
             if (response == null || response.Data == null)
                 return null;
@@ -736,7 +736,7 @@ namespace net.openstack.Providers.Rackspace
             var userAccess = TokenCache.Get(string.Format("{0}:{1}/{2}", UrlBase, rackspaceCloudIdentity.Domain, rackspaceCloudIdentity.Username), () =>
                             {
                                 var auth = new AuthRequest(identity);
-                                var response = ExecuteRESTRequest<AuthenticationResponse>(identity, new Uri(UrlBase, "/v2.0/tokens"), HttpMethod.POST, auth, isTokenRequest: true);
+                                var response = ExecuteRESTRequest<AuthenticationResponse>(identity, new Uri(UrlBase, "v2.0/tokens"), HttpMethod.POST, auth, isTokenRequest: true);
 
 
                                 if (response == null || response.Data == null || response.Data.UserAccess == null || response.Data.UserAccess.Token == null)
@@ -846,7 +846,7 @@ namespace net.openstack.Providers.Rackspace
                     {"belongsTo", tenantId}
                 });
             
-            var response = ExecuteRESTRequest<AuthenticationResponse>(identity, new Uri(UrlBase, string.Format("/v2.0/tokens/{0}", token)), HttpMethod.GET, queryStringParameter: queryStringParameters);
+            var response = ExecuteRESTRequest<AuthenticationResponse>(identity, new Uri(UrlBase, string.Format("v2.0/tokens/{0}", token)), HttpMethod.GET, queryStringParameter: queryStringParameters);
 
 
             if (response == null || response.Data == null || response.Data.UserAccess == null || response.Data.UserAccess.Token == null)
